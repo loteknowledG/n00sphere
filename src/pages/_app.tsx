@@ -1,8 +1,12 @@
 import Head from 'next/head'
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
-
 import customTheme from '../chakra-ui/customTheme'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
+const queryClient = new QueryClient()
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -10,11 +14,14 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <script src="https://apis.google.com/js/platform.js"></script>
       </Head>
       <ColorModeScript initialColorMode={customTheme.config.initialColorMode} />
-      <ChakraProvider theme={customTheme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider theme={customTheme}>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </QueryClientProvider>
     </>
   )
 }

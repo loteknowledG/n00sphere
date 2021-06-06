@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/components/io/index.js", "src/components/io/IoTabs.js", "src/components/io/index.js", "src/pages/index.js"  ],
   "exclude": [
     "node_modules"
   ]
