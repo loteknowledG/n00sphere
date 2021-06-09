@@ -14,7 +14,7 @@ export const initialState = {
     ]
 
     }],    
-    mainStageIdx: 0,
+    playIdx: 0,
     // now: {    
     //     play: {
     //         agent: 'Add agent',      

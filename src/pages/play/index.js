@@ -23,6 +23,7 @@ export function Play() {
     const [globalState, globalActions] = useGlobal() 
     const classes = useStyles()     
     const [momentIdx, setMomentIdx] = useState(0)
+    console.log(globalState.plays, globalState.playsIdx)
     let pic = globalState.plays[globalState.playsIdx].pix[momentIdx]
     return (<VStack        
         spacing={4}

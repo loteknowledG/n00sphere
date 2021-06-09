@@ -47,7 +47,7 @@ export function NowPlaying() {
                     action={
                       <Link href={"/matrix"} style={{ textDecoration: 'none' }} >
                         <IconButton aria-label="matrix" onClick={() => {
-                          globalActions.setMainStageIdx(idx)
+                          globalActions.setPlayIdx(idx)
                           history.push('/matrix')
                         }}>
                           <BuildIcon />
@@ -58,7 +58,7 @@ export function NowPlaying() {
                   />
                   <Link href={"/play"} style={{ textDecoration: 'none' }}>
                     <CardActionArea onClick={() => {
-                        globalActions.setMainStageIdx(idx)
+                        globalActions.setPlayIdx(idx)
                     }}>
                       <CardMedia
                         component="img"

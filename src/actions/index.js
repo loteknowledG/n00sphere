@@ -7,6 +7,10 @@ export const addPlay = (store, play) => {
   
 }
 
+export const getPlay = (store) => {
+  return store.state.plays[store.state.playIdx]
+}
+
 export const getMainStage = (store) => {
   console.log(store.state.plays[store.state.mainStageIdx])
   return store.state.plays[store.state.mainStageIdx]
@@ -16,6 +20,9 @@ export const getTuning = (store) => {
   return store.state.now.tune
 }
 
+export const setPlayIdx = (store, playIdx) => {
+  store.setState({playIdx})
+}
 
 export const setMainStageIdx = (store, mainStageIdx) => {
   store.setState({ mainStageIdx })
