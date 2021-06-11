@@ -1,10 +1,9 @@
 import React, { useRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Card, CardMedia, Grid } from '@material-ui/core'
-import { ArrowLeft } from 'mdi-material-ui'
 import useGlobal from '../../store'
 import { Back } from './Back'
-import { useHistory } from 'react-router-dom'
+import { useRouter } from 'next/router'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 345,
     objectFit: 'cover'
-    // paddingTop: '56.25%', // 16:9
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -63,12 +61,11 @@ const useStyles = makeStyles((theme) => ({
  /   YY   Y888b  C888  888  888   888    888   /Y88b  
 /          Y888b  "88_-888  "88_/ 888    888  /  Y8*/ 
 export function Matrix() {
-  
   const classes = useStyles()
   const [globalState, globalActions] = useGlobal()
-  let history = useHistory()
+  const router = useRouter()  
   if (globalState.matrix.length === 0) {    
-    history.push("/")
+    router.push("/")
   }
   const constraintsRef = useRef()
 
@@ -82,7 +79,7 @@ export function Matrix() {
                 <Grid key={pic.key} item>
                   <Card className={classes.paper} onClick={() => {
                     globalActions.setTuning(pic)
-                    history.push("/tuning")
+                    router.push("/tuning")
                   }}>
                     <CardMedia
                       className={classes.media}
@@ -94,8 +91,6 @@ export function Matrix() {
             </Grid>
           </Grid>
         </Grid>
-
-        
         <Back/>
       </>
     )

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Container } from '@chakra-ui/react'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import { AppBar, Drawer, IconButton, Toolbar } from '@material-ui/core'
+import { AppBar, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { IO } from '../components/io'
 import { NowPlaying } from '../components/nowPlaying'
+import { Navigator } from '../components/navigator'
+import { NoteMultipleOutline  } from 'mdi-material-ui'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -67,9 +69,16 @@ function Home() {
 </pre>
         </Toolbar>
       </AppBar>
-
       <Drawer anchor={'left'} open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        100% benefit
+        <List component="nav" aria-label="main mailbox folders">
+            <ListItem button>
+            <ListItemIcon>
+                <NoteMultipleOutline />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
+            </ListItem>
+            
+        </List>
       </Drawer>
       <NowPlaying />
       <IO />      

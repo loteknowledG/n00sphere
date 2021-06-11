@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Avatar, Card, CardActionArea, CardHeader, CardMedia, Grid, IconButton, Paper } from '@material-ui/core'
 import BuildIcon from '@material-ui/icons/Build'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
 // import { Button, Card, CardContent, H6 } from 'ui-neumorphism'
 // import { Box, Flex, Spacer } from "@chakra-ui/react"
 
@@ -26,10 +28,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+         /*__               
+|\ | _    |__)| _   . _  _  
+| \|(_)\)/|   |(_|\/|| )(_) 
+                  /    _*/    
 export function NowPlaying() {
   const classes = useStyles()
   const [globalState, globalActions] = useGlobal()
-  
+  const router = useRouter()
   if (globalState.plays.length > 0) {
     return (
       <Grid container className={classes.root} spacing={2}>
@@ -45,20 +51,21 @@ export function NowPlaying() {
                       </Avatar>
                     }
                     action={
-                      <Link href={"/matrix"} style={{ textDecoration: 'none' }} >
+                      // <Link style={{ textDecoration: 'none' }} >
                         <IconButton aria-label="matrix" onClick={() => {
                           globalActions.setPlayIdx(idx)
-                          history.push('/matrix')
+                          router.push('/matrix')
                         }}>
                           <BuildIcon />
                         </IconButton>
-                      </Link>
+                      // </Link>
                     }
                     title={play.title}                  
                   />
-                  <Link href={"/play"} style={{ textDecoration: 'none' }}>
+                  {/* <Link style={{ textDecoration: 'none' }}> */}
                     <CardActionArea onClick={() => {
                         globalActions.setPlayIdx(idx)
+                        router.push('/play')
                     }}>
                       <CardMedia
                         component="img"
@@ -68,7 +75,7 @@ export function NowPlaying() {
                         height={400}                      
                       />
                     </CardActionArea>  
-                  </Link>              
+                  {/* </Link>               */}
                 </Card>             
               </Grid>
             ))}
