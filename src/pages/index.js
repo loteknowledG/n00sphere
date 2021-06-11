@@ -6,7 +6,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import { IO } from '../components/io'
 import { NowPlaying } from '../components/nowPlaying'
 import { Navigator } from '../components/navigator'
-import { NoteMultipleOutline  } from 'mdi-material-ui'
+import { CurrencyIls, NoteMultipleOutline  } from 'mdi-material-ui'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,14 +70,19 @@ function Home() {
         </Toolbar>
       </AppBar>
       <Drawer anchor={'left'} open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        <List component="nav" aria-label="main mailbox folders">
+        <List component="nav" aria-label="Navigator">
             <ListItem button>
-            <ListItemIcon>
+              <ListItemIcon>
+                <CurrencyIls /> 
+              </ListItemIcon>
+              <ListItemText primary="|\ | _       _
+                                     | \|(/_><|_|_\"></ListItemText>
+            </ListItem>   
+            <ListItem button>
+              <ListItemIcon>
                 <NoteMultipleOutline />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-            </ListItem>
-            
+              </ListItemIcon>
+            </ListItem>         
         </List>
       </Drawer>
       <NowPlaying />

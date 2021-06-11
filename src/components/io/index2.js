@@ -27,9 +27,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const actions = [
+  { icon: <Draw />, name: 'Post' },
   { icon: <Elevator />, name: 'IO' },
-  { icon: <Draw />, name: 'Create' },
-  
 ];
 
 export function IO () {
@@ -50,10 +49,10 @@ export function IO () {
 
   const handleSpeedDialAction = (actionName) => {
     
-    if (actionName === 'IO') {
+    if (actionName === 'Post') {
       setUploadOpen(true)
       
-    } else if (actionName == 'Create') {
+    } else if (actionName == 'IO') {
       setDownloadOpen(true)
       // var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(storageObj));
       // var dlAnchorElem = document.getElementById('downloadAnchorElem');
