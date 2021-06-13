@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Avatar, Backdrop, Dialog, DialogActions, DialogContent, DialogTitle, List, ListItem, ListItemAvatar, ListItemText, useMediaQuery } from '@material-ui/core';
+import { Avatar, Backdrop, Dialog, DialogActions, DialogContent, DialogTitle, List, ListItem, ListItemAvatar, ListItemText, Typography, useMediaQuery } from '@material-ui/core';
 import { SpeedDial, SpeedDialIcon, SpeedDialAction} from '@material-ui/lab'
-import { Account, Download, Draw, Elevator, Plus, SafeSquareOutline, SafeSquare, Upload  } from 'mdi-material-ui'
+import { Account, ArrowDownThick, ArrowUpThick, BriefcaseDownload, BriefcaseUpload, Download, Draw, Elevator, Plus, SafeSquareOutline, SafeSquare, Upload  } from 'mdi-material-ui'
 import { useTheme } from '@material-ui/core/styles'
 import { UploadTabs } from './UploadTabs'
 import { DownloadTabs } from './DownloadTabs'
 import useGlobal from '../../store'
+import Switch from "react-switch"
+import { Box, Flex, Spacer } from "@chakra-ui/react"
 
 // import exportFromJSON from 'export-from-json'
 
@@ -23,6 +25,16 @@ const useStyles = makeStyles((theme) => ({
   },
   a: {
     display: 'none'
+  },
+  inload: {
+    paddingBottom: 7,
+    paddingLeft : 7
+  },
+  switch: {
+    right: theme.spacing(2),
+  },
+  title: {
+    flex: 1,
   }
 }));
 
@@ -31,6 +43,10 @@ const actions = [
   { icon: <Draw />, name: 'Create' },
   
 ];
+
+/*__  
+|/  \ 
+|\_*/
 
 export function IO () {
   const theme = useTheme();
@@ -42,6 +58,7 @@ export function IO () {
   // const [downloadHidden, setDownloadHidden] = useState(false)
   const [globalState, globalActions] = useGlobal() 
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  const [checked, setChecked] = useState(false)
   
 
   const handleSpeedDialClick = () => {
@@ -67,6 +84,10 @@ export function IO () {
       // exportFromJSON({ plays , fileName, exportType })
      
     }
+  }
+
+  const handleSwitchChange = (checked) => {
+    setChecked(checked)
   }
 
   return (
@@ -99,20 +120,33 @@ export function IO () {
         open={uploadOpen}
         onClose={()=>setUploadOpen(false)}
         aria-labelledby="responsive-dialog-title">
-        <DialogTitle id="responsive-dialog-title">
-          Choose Upload mechanism  
-        </DialogTitle>
+        <DialogTitle id="responsive-dialog-title" >
+        <Flex>
+          <Box p="4">
+            Pick Inload mechanism 
+          </Box>
+          <Spacer />
+          <Box p="4">
+            <Switch className={classes.switch} onChange={handleSwitchChange} checked={checked} checkedIcon={<ArrowDownThick className={classes.inload}/>} uncheckedIcon={<ArrowUpThick className={classes.inload}  />} onColor='#d76798' offColor='#b267d7' />         
+          </Box>
+        </Flex>
+          <Typography variant="h6" className={classes.title}>
+                       
+          </Typography>
+          
+        </DialogTitle>        
         <DialogContent>
           <UploadTabs handleUploadClose={()=>setUploadOpen(false)} handleSpeedDialClick={() => handleSpeedDialClick()} />          
         </DialogContent>
-        <DialogActions>          
-          {/* <Button autoFocus onClick={handleClose} color="primary">
+        
+        {/* <DialogActions>          
+          <Button autoFocus onClick={handleClose} color="primary">
             Disagree
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
             Agree
-          </Button> */}
-        </DialogActions>
+          </Button>
+        </DialogActions> */}
       </Dialog>
       <Dialog
         id="downloadDialog"
