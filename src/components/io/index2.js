@@ -4,7 +4,7 @@ import { Avatar, Backdrop, Dialog, DialogActions, DialogContent, DialogTitle, Li
 import { SpeedDial, SpeedDialIcon, SpeedDialAction} from '@material-ui/lab'
 import { Account, Download, Draw, Elevator, Plus, SafeSquareOutline, SafeSquare, Upload  } from 'mdi-material-ui'
 import { useTheme } from '@material-ui/core/styles'
-import { UploadTabs } from './UploadTabs'
+import { UploadTabs } from './IoTabs'
 import { DownloadTabs } from './DownloadTabs'
 import useGlobal from '../../store'
 
