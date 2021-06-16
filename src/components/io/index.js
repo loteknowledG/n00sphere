@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Avatar, Backdrop, Dialog, DialogActions, DialogContent, DialogTitle, List, ListItem, ListItemAvatar, ListItemText, Typography, useMediaQuery } from '@material-ui/core';
 import { SpeedDial, SpeedDialIcon, SpeedDialAction} from '@material-ui/lab'
-import { Account, ArrowDownThick, ArrowUpThick, BriefcaseDownload, BriefcaseUpload, Download, Draw, Elevator, Plus, SafeSquareOutline, SafeSquare, Upload  } from 'mdi-material-ui'
+import { Account, ArrowDownThick, ArrowUpThick, Draw, Elevator, Plus, SafeSquareOutline, SafeSquare} from 'mdi-material-ui'
 import { useTheme } from '@material-ui/core/styles'
-import { UploadTabs } from './UploadTabs'
+import { IoTabs } from './IoTabs'
 import { DownloadTabs } from './DownloadTabs'
 import useGlobal from '../../store'
 import Switch from "react-switch"
@@ -53,8 +53,11 @@ export function IO () {
   const classes = useStyles()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [speedDialOpen, setSpeedDialOpen] = useState(false)
-  const [uploadOpen, setUploadOpen] = useState(false)
+  const [ioOpen, setIoOpen] = useState(false)
+  const [isDownload, setIsDownload] = useState(true)
   const [downloadOpen, setDownloadOpen] = useState(false)
+
+  // const [isDown, setIsDown] = useState(true)
   // const [downloadHidden, setDownloadHidden] = useState(false)
   const [globalState, globalActions] = useGlobal() 
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
@@ -68,8 +71,7 @@ export function IO () {
   const handleSpeedDialAction = (actionName) => {
     
     if (actionName === 'IO') {
-      setUploadOpen(true)
-      
+      setIoOpen(true)
     } else if (actionName == 'Create') {
       setDownloadOpen(true)
       // var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(storageObj));
@@ -114,29 +116,27 @@ export function IO () {
         ))}
       </SpeedDial>      
       <Dialog
-        id="uploadDialog"
+        id="IoDialog"
         fullScreen={fullScreen}
         maxWidth={'md'}
-        open={uploadOpen}
-        onClose={()=>setUploadOpen(false)}
+        open={ioOpen}
+        onClose={()=>setIoOpen(false)}
         aria-labelledby="responsive-dialog-title">
         <DialogTitle id="responsive-dialog-title" >
         <Flex>
-          <Box p="4">
-            Pick Inload mechanism 
-          </Box>
+          { checked ? 
+            <Box p="4">Pick Inload mechanism</Box> :
+            <Box p="4">Pick Xload mechanism</Box> }
           <Spacer />
           <Box p="4">
-            <Switch className={classes.switch} onChange={handleSwitchChange} checked={checked} checkedIcon={<ArrowDownThick className={classes.inload}/>} uncheckedIcon={<ArrowUpThick className={classes.inload}  />} onColor='#d76798' offColor='#b267d7' />         
+            <Switch className={classes.switch} onChange={handleSwitchChange} checked={checked} checkedIcon={<ArrowDownThick className={classes.inload}/>} uncheckedIcon={<ArrowUpThick className={classes.inload} />} onColor='#d76798' offColor='#b267d7' />         
           </Box>
         </Flex>
-          <Typography variant="h6" className={classes.title}>
-                       
-          </Typography>
+          
           
         </DialogTitle>        
         <DialogContent>
-          <UploadTabs handleUploadClose={()=>setUploadOpen(false)} handleSpeedDialClick={() => handleSpeedDialClick()} />          
+          <IoTabs handleIodClose={()=>setIoOpen(false)} handleSpeedDialClick={() => handleSpeedDialClick()} />          
         </DialogContent>
         
         {/* <DialogActions>          

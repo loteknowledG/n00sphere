@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },  
 }))
 
-export function UploadTabs(props) {
+export function IoTabs(props) {
   const router = useRouter()
   const classes = useStyles()
   const theme = useTheme()
@@ -63,7 +63,7 @@ export function UploadTabs(props) {
     if (fileValue === '' || fileValue === undefined) {}
     else if (fileValue.matrix) {
       globalActions.setMatrix(fileValue.matrix)
-      props.handleUploadClose()        
+      props.handleIoClose()        
     }
     // else {      
     //   // globalActions.addLevel(fileValue)
@@ -84,7 +84,7 @@ export function UploadTabs(props) {
         reader.onload = () => {
           // Do whatever you want with the file contents
           setFileValue(JSON.parse(reader.result ))
-          props.handleUploadClose()
+          props.handleIoClose()
           props.handleSpeedDialClick()
         }
         reader.readAsText(file)
@@ -121,7 +121,7 @@ export function UploadTabs(props) {
       play.cover = play.pix[0].src
       globalActions.addPlay(play)
       console.log(play.pix)
-      props.handleUploadClose()
+      props.handleIoClose()
       props.handleSpeedDialClick()      
       router.push('/mainStage')
     }
@@ -216,4 +216,4 @@ export function UploadTabs(props) {
     </div>
   );
 }
-export default UploadTabs
+export default IoTabs
