@@ -4,6 +4,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { AppBar, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { IO } from '../components/io'
+import { Action } from '../components/action'
 import { NowPlaying } from '../components/nowPlaying'
 import { Navigator } from '../components/navigator'
 import { CurrencyIls, NoteMultipleOutline  } from 'mdi-material-ui'
@@ -55,10 +56,10 @@ function Home() {
     <Container>
       <AppBar color="transparent" elevation={0}>
         <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => setDrawerOpen(true)}>
+        {/* <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => setDrawerOpen(true)}>
           <MenuIcon />
-        </IconButton>
-<pre className={classes.brandText}> 
+        </IconButton> */}
+<pre className={classes.brandText}><br/> 
 888b    |   ,88~~\     ,88~~\                    888                                <br/> 
 |Y88b   |  d888   \   d888   \   d88~\ 888-~88e  888-~88e  e88~~8e  888-~\  e88~~8e <br/>
 | Y88b  | 88888    | 88888    | C888   888  888b 888  888 d888  88b 888    d888  88b<br/>
@@ -68,8 +69,8 @@ function Home() {
 |                                      888                                          <br/>                      
 </pre>
         </Toolbar>
-      </AppBar>
-      <Drawer anchor={'left'} open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+      </AppBar><br/><br/>
+      {/* <Drawer anchor={'left'} open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <List component="nav" aria-label="Navigator">
             <ListItem button>
               <ListItemIcon>
@@ -84,9 +85,9 @@ function Home() {
               </ListItemIcon>
             </ListItem>         
         </List>
-      </Drawer>
+      </Drawer> */}
       <NowPlaying />
-      <IO />      
+      <Action />      
     </Container>
   )
 }
